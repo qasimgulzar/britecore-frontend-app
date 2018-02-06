@@ -41,6 +41,7 @@
   };
   export default{
     name:'field-form-component',
+    props:['risk'],
     data(){
       return {
         insurers:[],
@@ -64,7 +65,11 @@
     created(){
       AxioInstance.get('/insurers/').then((response)=>{
         this.insurers=response.data;
-      })
+      });
+    this.$watch('risk',(newVal)=>{
+      this.field=Object.create(defaultField);
+      this.field.insurres=newVal.id;
+    });
     }
   }
 </script>

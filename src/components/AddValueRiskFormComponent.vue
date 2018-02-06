@@ -24,11 +24,11 @@
   import AxioInstance from '../services/risk.service.ts';
   export default{
     name:"add-value-risk-form-component",
+    props:['insurer'],
     data(){
       return {
         insurers:[],
         fields: [],
-        insurer:undefined,
         payload:{}
       };
     },
