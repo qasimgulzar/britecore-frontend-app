@@ -20,6 +20,10 @@
     created(){
       AxioInstance.get('/insurers/').then((response)=>{
         this.insurers=response.data;
+        if(this.insurers){
+          this.insurer=this.insurers[0]
+          this.$emit('onRiskChange',this.insurer);
+        }
       });
     },
   methods:{
