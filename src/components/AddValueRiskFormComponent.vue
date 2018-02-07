@@ -35,6 +35,7 @@
     methods:{
       saveRiskValue(event){
         event.preventDefault();
+        this.payload.insurer=this.insurer.id;
         AxioInstance.post('/risks/',this.payload).then((response)=>{
           this.payload={};
           this.$emit("onSubmit",this.insurer);
