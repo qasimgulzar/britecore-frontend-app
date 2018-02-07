@@ -54,7 +54,9 @@
         let _this=this;
         AxioInstance.post('/fields/',this.field)
           .then((response)=>{
-          _this.field=Object.create(defaultField);
+          let f=Object.create(defaultField);
+        f.insurres=_this.field.insurres;
+          _this.field=f;
         })
         .catch((response)=>{
           console.log(response.data);
