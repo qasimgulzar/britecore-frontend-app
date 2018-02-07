@@ -57,6 +57,7 @@
           let f=Object.create(defaultField);
         f.insurres=_this.field.insurres;
           _this.field=f;
+          this.$emit("onSubmit",_this.field.insurres);
         })
         .catch((response)=>{
           console.log(response.data);
@@ -65,12 +66,12 @@
     },
 
     created(){
-      AxioInstance.get('/insurers/').then((response)=>{
-        this.insurers=response.data;
-      });
     this.$watch('risk',(newVal)=>{
       this.field=Object.create(defaultField);
       this.field.insurres=newVal.id;
+      AxioInstance.get('/insurers/').then((response)=>{
+          this.insurers=response.data;
+      });
     });
     }
   }

@@ -37,6 +37,7 @@
         event.preventDefault();
         AxioInstance.post('/risks/',this.payload).then((response)=>{
           this.payload={};
+          this.$emit("onSubmit",this.insurer);
       });
       },
       insurerChanged(){
@@ -47,8 +48,10 @@
       }
     },
     created(){
-      AxioInstance.get('/insurers/').then((response)=>{
-        this.insurers=response.data;
+      this.$watch('insurer',(newVal)=>{
+        AxioInstance.get('/insurers/').then((response)=>{
+          this.insurers=response.data;
+        });
       });
     }
   }

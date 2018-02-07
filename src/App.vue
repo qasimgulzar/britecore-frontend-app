@@ -8,20 +8,20 @@
         <div class="col-sm-3">
           <div>
             <h5>Add Risk</h5>
-            <risk-form></risk-form>
+            <risk-form @onSubmit="onSubmit"></risk-form>
           </div>
           <div>
             <h5>Add Field</h5>
-            <field-form :risk="risk"></field-form>
+            <field-form :risk="risk" @onSubmit="onSubmit"></field-form>
           </div>
           <div>
             <h5>Add New Risk</h5>
-            <risk-value-form :insurer="risk"></risk-value-form>
+            <risk-value-form :insurer="risk" @onSubmit="onSubmit"></risk-value-form>
           </div>
         </div>
         <div class="col-sm-9">
-          <select-risk-component @onRiskChange="onRiskChange"></select-risk-component>
-          <table-component :fields="fields" :data="data"></table-component>
+          <select-risk-component ref="selectRiskComponent" @onRiskChange="onRiskChange"></select-risk-component>
+          <table-component  ref="tableComponent" :fields="fields" :data="data"></table-component>
         </div>
 
       </div>
@@ -54,6 +54,9 @@
           this.data=[];
           this.data=response.data;
         });
+      },
+      onSubmit(risk){
+        this.$refs.selectRiskComponent.populate();
       }
     },
     components:{
@@ -64,7 +67,6 @@
         'select-risk-component':SelectRiskComponent,
     },
     created(){
-
     }
   }
 </script>

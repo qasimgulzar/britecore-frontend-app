@@ -23,12 +23,13 @@
     },
     methods:{
       createRisk(event){
+        let _this=this;
         event.preventDefault();
         let  payload={
           name:this.riskName
         }
       AxioInstance.post('/insurers/',payload).then((response)=>{
-        console.log(response);
+        _this.$emit("onSubmit",_this.insurer);
       }).catch((response)=>{
           console.log(response);
         });
